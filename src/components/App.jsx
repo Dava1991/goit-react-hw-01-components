@@ -1,26 +1,16 @@
-import { Profile } from 'components/Profile/Profile';
-import { Statistics } from 'components/Statistics/Statistics';
-import { FriendList } from 'components/FriendList/FriendList';
-import { TransactionHistory } from 'components/TransactionHistory/TransactionHistory';
-import user from 'components/data/user.json';
-import data from 'components/data/data.json';
-import friends from 'components/data/friends.json';
-import transactions from 'components/data/transactions.json';
-
+import user from './Data/user.json';
+import Profile from './Profile/Profile';
+import Statistics from './Statistics/Statistics';
+import data from './Data/data.json';
+import FriendList from './FriendList/FriendList';
+import friends from './Data/friends.json';
+import transactions from './Data/transactions.json';
+import TransactionHistory from './TransactionHistory/TransactionHistory';
+import SectionText from './SectionText/SectionText';
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
+    <>
+      <SectionText text="1 - Профіль соціальної мережі" />
       <Profile
         username={user.username}
         tag={user.tag}
@@ -28,21 +18,14 @@ export const App = () => {
         avatar={user.avatar}
         stats={user.stats}
       />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '100px',
-          marginRight: '100px',
-        }}
-      >
-        <Statistics title="Upload stats" stats={data} />
-        <Statistics stats={data} />
-      </div>
-      <div>
-        <FriendList friends={friends} />
-      </div>
+      <SectionText text="2- Секція статистики" />
+      <Statistics title="Upload stats" stats={data} />
+
+      <SectionText text="3 - Список друзів" />
+      <FriendList friends={friends} />
+
+      <SectionText text="4 - Історія транзакцій" />
       <TransactionHistory items={transactions} />
-    </div>
+    </>
   );
 };
